@@ -1,0 +1,255 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <button ion-button menuToggle icon-only>
+            <ion-icon name='ios-menu-outline'></ion-icon>
+        </button>
+        <ion-title>Apiary inner</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="ios-more-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+    <!--<ion-toolbar>
+        <ion-segment [(ngModel)]="apiary">
+            <ion-segment-button value="info">
+                Apiary Info
+            </ion-segment-button>
+            <ion-segment-button value="hives">
+                Hives in Apiary
+            </ion-segment-button>
+            <ion-segment-button value="stats">
+                Statistics
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>-->
+
+</ion-header>
+
+
+
+
+
+<ion-content>
+
+    <!--<div [ngSwitch]="apiary">
+        <ion-list *ngSwitchCase="'info'">-->
+    <ng-container *ngIf="apiary">
+        <ion-row style="height: 1rem"></ion-row>
+
+        <ion-item no-lines>
+            <h1>Apiary</h1>
+        </ion-item>
+
+        <ion-item no-lines>
+            <ion-avatar item-left>
+                <img src="./assets/img/apiary.jpg">
+            </ion-avatar>
+            <h2>{{ apiary.name }}</h2>                                      <!--Apiary_name-->
+            <p>{{ apiary.place }}</p>                                 <!--Apiary_place-->
+        </ion-item>
+
+        <!--<ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-pulse"></ion-icon>
+                    <div>80% strengt</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-thermometer"></ion-icon>
+                    <div>32&deg;C TEMP</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-water"></ion-icon>
+                    <div>25%</div>
+                </button>
+            </ion-col>
+        </ion-row>-->
+        <!--<ion-item>
+            <p>Active hives</p>
+            <h2>45 active hives</h2>
+        </ion-item>-->
+        <!--<ion-item>
+            <p>Inactive hives</p>
+            <h2>5 inactive hives</h2>
+        </ion-item>-->
+        <ion-item>
+            <p>Location</p>
+            <h2>{{ apiary.longtitude }}, {{ apiary.latitude }}</h2>                         <!--Atvaizduoja bityno ilgumà ir platumà. Apiary_longtitude ir Apiary_latitude-->
+        </ion-item>
+    </ng-container>
+
+    <ion-fab right bottom style="z-index:100;position:fixed;right:20px;bottom:65px;">
+        <button ion-fab color="warning" (click)="editApiaryPage()" style="bottom: 10px;"><ion-icon name="ios-create-outline"></ion-icon></button>
+        <button ion-fab color="danger" (click)="deleteApiary()"><ion-icon name="ios-remove-circle-outline"></ion-icon></button>
+    </ion-fab>
+
+    <!--<ion-item no-lines>
+        <h1>Bee families in apiary</h1>
+    </ion-item>
+
+    <ion-item>
+        <p>Carnica</p>
+        <h2>40 bee families</h2>
+    </ion-item>
+    <ion-item>
+        <p>Buckfast</p>
+        <h2>5 bee families</h2>
+    </ion-item>-->
+    <!--</ion-list>
+
+    <ion-list *ngSwitchCase="'hives'">-->
+    <!--<ion-card (click)="openHiveInnerPage()">
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/img/hive-img.jpg">
+            </ion-avatar>
+            <h2>#1 Avilys</h2>
+            <p>Active hive</p>
+        </ion-item>
+        <ion-card-content>
+            <p>Too high temperature.</p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-pulse"></ion-icon>
+                    <div>90% strength</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-thermometer"></ion-icon>
+                    <div>40&deg;C</div>
+                </button>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-note>
+                    2018-04-20
+                </ion-note>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-card (click)="openHiveInnerPage()">
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/img/hive-img.jpg">
+            </ion-avatar>
+            <h2>#2 Avilys</h2>
+            <p>Active hive</p>
+        </ion-item>
+        <ion-card-content>
+            <p>Everything is fine!</p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-pulse"></ion-icon>
+                    <div>100% strength</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-thermometer"></ion-icon>
+                    <div>32&deg;C</div>
+                </button>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-note>
+                    2018-04-20
+                </ion-note>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-card (click)="openHiveInnerPage()">
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/img/hive-img.jpg">
+            </ion-avatar>
+            <h2>#3 Avilys</h2>
+            <p>Active hive</p>
+        </ion-item>
+        <ion-card-content>
+            <p>Everything is fine!</p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-pulse"></ion-icon>
+                    <div>90% strength</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-thermometer"></ion-icon>
+                    <div>33&deg;C</div>
+                </button>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-note>
+                    2018-04-20
+                </ion-note>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-card (click)="openHiveInnerPage()">
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="./assets/img/hive-img.jpg">
+            </ion-avatar>
+            <h2>#4 Avilys</h2>
+            <p>Active hive</p>
+        </ion-item>
+        <ion-card-content>
+            <p>Excessive humidity.</p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-pulse"></ion-icon>
+                    <div>80% strength</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="ios-thermometer"></ion-icon>
+                    <div>32&deg;C</div>
+                </button>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-note>
+                    2018-04-20
+                </ion-note>
+            </ion-col>
+        </ion-row>
+    </ion-card>-->
+    <!--</ion-list>
+
+    <ion-list *ngSwitchCase="'stats'">-->
+    <!--<ion-item no-lines>
+        <h1>Temperature</h1>
+    </ion-item>
+    <img src="./assets/img/Chart-JS.png">
+
+    <ion-item no-lines>
+        <h1>Humidity</h1>
+    </ion-item>
+    <img src="./assets/img/Chart-JS.png">
+
+    <ion-item no-lines>
+        <h1>Strength</h1>
+    </ion-item>
+    <img src="./assets/img/Chart-JS.png">-->
+    <!--</ion-list>
+    </div>-->
+
+</ion-content>

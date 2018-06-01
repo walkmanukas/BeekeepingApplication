@@ -1,0 +1,42 @@
+<ion-menu [content]="content" (ionOpen)="ionOpen()">
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+
+            <ion-item no-lines>
+                Your workplace:
+            </ion-item>
+            <ion-item *ngIf="apiaries.length">
+                <ion-label>Choose apiary</ion-label>
+                <ion-select #apiarySelect [(ngModel)]="apiary" (ionChange)="selectedApiary(apiary)" interface="action-sheet">
+                    <ion-option *ngFor="let apiary of apiaries" value="{{ apiary.id }}">{{ apiary.name }}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item (click)="openProfilePage()">
+                Profile
+            </ion-item>
+            <ion-item (click)="openInfoPage()">
+                Info
+            </ion-item>
+            <ion-item (click)="logout()">
+                Logout
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>
+
+
+<ion-tabs #tabs (ionChange)="tabsChange()">
+    <ion-tab [root]="tab1Root" [rootParams]="{token: token}" tabTitle="Apiaries" tabIcon="ios-home-outline"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{token: token}" [enabled]="enableTabs" tabTitle="Hives" tabIcon="ios-browsers-outline"></ion-tab>
+    <ion-tab [root]="tab3Root" [rootParams]="{token: token}" [enabled]="enableTabs && hiveCheck" tabTitle="Treatments" tabIcon="ios-medkit-outline"></ion-tab>
+    <ion-tab [root]="tab4Root" [rootParams]="{token: token}" [enabled]="enableTabs && hiveCheck" tabTitle="Harvest" tabIcon="ios-color-fill-outline"></ion-tab>
+    <ion-tab [root]="tab5Root" [rootParams]="{token: token}" [enabled]="enableTabs && hiveCheck" tabTitle="Feedings" tabIcon="ios-restaurant-outline"></ion-tab>
+</ion-tabs>

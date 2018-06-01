@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar color="primary">
+
+        <ion-title>Login</ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-row style="height: 100px"></ion-row>
+
+    <div style="text-align: center;">
+        <ion-icon ios="ios-cloud" md="ios-cloud" color="primary" style="font-size: 80px;"></ion-icon>
+    </div>
+
+    <p text-center>Hi! Please, log in to continue:</p>
+
+    <ion-list padding>
+
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input type="text" [(ngModel)]="username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+    <div>
+        <button ion-button full round (click)="processlogin()">Log In</button>
+        <button ion-button full round (click)="openRegisterPage()">Register</button>
+    </div>
+
+</ion-content>

@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-navbar color="primary">
+
+        <button ion-button menuToggle icon-only>
+            <ion-icon name='ios-menu-outline'></ion-icon>
+        </button>
+
+        <ion-title>Harvest</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="ios-search-outline"></ion-icon>
+            </button>
+            <button ion-button icon-only>
+                <ion-icon name="ios-more-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <div *ngIf="harvests.length == 0">
+        <ion-card padding>
+            There are no harvests created.
+        </ion-card>
+    </div>
+
+    <div *ngIf="harvests.length">
+        <ion-card (click)="openHarvestInnerPage(harvest.id)" *ngFor="let harvest of harvests | arraySort:'-date';">
+            <ion-item>
+                <ion-avatar item-left>
+                    <img src="./assets/img/honey3.jpg">
+                </ion-avatar>
+                <h2>{{ harvest.name }}</h2>                            <!--Harvest_name-->
+                <p>{{ harvest.product }}</p>                                        <!--Harvest_product-->
+            </ion-item>
+            <ion-card-content>
+                <p>{{ harvest.note != 'null' ? harvest.note:'' }}</p>                    <!--Harvest_notes-->
+            </ion-card-content>
+            <ion-row>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        <ion-icon name="ios-color-fill"></ion-icon>
+                        <div>{{ harvest.quantity }} {{ harvest.unit }}</div>                           <!--Harvest_quantity, Havest_unit-->
+                    </button>
+                </ion-col>
+                <ion-col center text-center>
+                    <ion-note>
+                        Harvest date: {{ harvest.date | date: 'yyyy-MM-dd' }}                   <!--Harvest_date-->
+                    </ion-note>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+
+    <ion-fab right bottom style="z-index:100;position:fixed;right:20px;bottom:65px;">
+        <button ion-fab color="primary" (click)="openHarvestCreatePage()"><ion-icon name="ios-add-circle-outline"></ion-icon></button>
+    </ion-fab>
+
+</ion-content>
